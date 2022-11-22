@@ -56,7 +56,7 @@
                     <label for="tags" class="inline-block text-lg mb-2">
                         Tags (Comma Separated)
                     </label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags" value = "{{old('tagss')}}"
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags" value = "{{old('tags')}}"
                         placeholder="Example: Laravel, Backend, Postgres, etc" />
                 </div>
                 @error('description')
@@ -66,14 +66,13 @@
                     <label for="description" class="inline-block text-lg mb-2">
                         Job Description
                     </label>
-                    <textarea class="border border-gray-200 rounded p-2 w-full" name="description" value = "{{old('description')}}" rows="10"
-                        placeholder="Include tasks, requirements, salary, etc"></textarea>
+                    <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10"
+                        placeholder="Include tasks, requirements, salary, etc">{{old('description')}}</textarea>
                 </div>
                 <div class="mb-6">
                     <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                        Create Gig
+                        Create Job
                     </button>
-
                     <a href="/" class="text-black ml-4"> Back </a>
                 </div>
             </form>

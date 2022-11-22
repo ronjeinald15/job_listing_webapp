@@ -22,16 +22,21 @@ Route::get('/', function () {
 }); 
 //Listing Routes
 Route::get('/listings', [ListingController::class, 'index']);
-Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 Route::post('/listings/store', [ListingController::class, 'store']);
 Route::get('/listing/{listing}/edit', [ListingController::class, 'edit']);
 Route::put('/listing/{listing}', [ListingController::class, 'update']);
 Route::delete('/listing/{listing}', [ListingController::class, 'destroy']);
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
 
-//User Routes
-Route::get('/register', [UserController::class, 'create']);
+//User Routes   
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/user/{user}/profile', [UserController::class, 'profile'])->middleware('auth');
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
 
 //Single Routes
 Route::get('/listing/{listing}', [ListingController::class, 'show']);

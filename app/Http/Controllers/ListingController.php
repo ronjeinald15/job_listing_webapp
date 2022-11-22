@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -31,7 +32,8 @@ class ListingController extends Controller
             'tags' => 'required',
             'description' => 'required'
         ]);
-
+        $formFields['user_id'] = auth()->id();
+        
         Listing::create($formFields);
 
         return redirect('/listings')->with('success', 'Listing successfully created!');
@@ -61,5 +63,11 @@ class ListingController extends Controller
     public function destroy(Listing $listing){
         $listing->delete();
         return redirect('/listings')->with('success', 'Job successfully deleted!');
+    }
+
+    public function manage(){
+        $user = auth()->user();
+        $listings = Listing::whereBelongsTo($user)->get();
+        return view('listings.manage', ['listings' => $listings]);
     }
 }

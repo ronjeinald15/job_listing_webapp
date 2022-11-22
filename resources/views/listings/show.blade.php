@@ -12,7 +12,7 @@
                 <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
                 <x-listing-tags :csv="$listing->tags" />
                 <div class="text-lg my-4">
-                    <i class="fa-solid fa-location-dot"></i> Daytona, FL
+                    <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
                 </div>
                 <div class="border border-gray-200 w-full mb-6"></div>
                 <div>
@@ -24,12 +24,12 @@
                             {{$listing->description}}
                         </p>
 
-                        <a href={{$listing->email}}
+                        <a href= "/user/{{$listing->user_id}}/profile"
                             class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i
                                 class="fa-solid fa-envelope"></i>
                             Contact Employer</a>
 
-                        <a href={{$listing->email}} target="_blank"
+                        <a href= "https://{{$listing->website}}" target="_blank"
                             class="block bg-black text-white py-2 rounded-xl hover:opacity-80"><i
                                 class="fa-solid fa-globe"></i> Visit
                             Website</a>
@@ -37,17 +37,5 @@
                 </div>
             </div>
         </div>
-        <br>
-        <x-card class="mt-4 p-2 flex space-x-6">
-            <a href="/listing/{{$listing->id}}/edit">
-                <i class = "fa solid fa-pencil"></i>Edit
-            </a>
-            <form action="/listing/{{$listing->id}}" method = "POST" class = "inline">
-                @csrf
-                @method('DELETE')
-                <button class = "text-red-500"><i class = "fa-solid fa-trash"></i>Delete</button>
-            </form>
-
-        </x-card>
     </div>
 </x-layout>

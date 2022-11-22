@@ -1,0 +1,2 @@
+Migrate all the migrations and use seeds for better view of the application
+On terminal use php artisan migrate:refresh --seed
